@@ -1,0 +1,21 @@
+name: Lint, Test and Deploy on "Push"
+on: push
+jobs:
+  GetCode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code from Repository to Github Server (GitHub Hosted Runner)
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: lint the code
+        run: npm lint
+      - name: build the code
+        run: npm build
+      - name: test the code
+        run: npm test
+      - name: deploy the code
+        run: "echo deploying...."  
+        
