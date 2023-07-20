@@ -1,5 +1,7 @@
 name: "Workflow 2 - Output events on `issues`"
-on: issues
+on: 
+  issues:
+    types: [opened, edited, milestoned]
 jobs:
   Echo:
     runs-on: ubuntu-latest
