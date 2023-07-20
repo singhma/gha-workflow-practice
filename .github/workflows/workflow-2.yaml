@@ -1,0 +1,14 @@
+name: "Workflow 2 - Output events on `issues`"
+on: issues
+jobs:
+  Echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output via shell
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: issue event with github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github.event) }}
+        run: echo "$GITHUB_CONTEXT"
