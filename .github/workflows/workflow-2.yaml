@@ -1,16 +1,8 @@
 name: "Workflow 2 - Output events on `issues`"
-on: 
-  issues:
-    types: [opened, edited, milestoned]
+on: issues
 jobs:
-  Echo:
+  output-info:
     runs-on: ubuntu-latest
     steps:
-      - name: output via shell
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: issue event with github context
-        env:
-          GITHUB_EVENT: ${{ toJson(github.event) }}
-        run: echo "$GITHUB_EVENT"
+      - name: output event details
+        run: echo "${{toJson(github.event)}}"
