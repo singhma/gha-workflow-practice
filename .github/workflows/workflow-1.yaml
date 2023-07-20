@@ -15,6 +15,7 @@ jobs:
       - name: lint the code
         run: npm run lint
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get Code from Repository to Github Server (GitHub Hosted Runner)
@@ -28,6 +29,7 @@ jobs:
       - name: build the code
         run: npm run build
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Get Code from Repository to Github Server (GitHub Hosted Runner)
@@ -43,6 +45,7 @@ jobs:
       - name: test the code
         run: npm run test
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get Code from Repository to Github Server (GitHub Hosted Runner)
